@@ -62,6 +62,8 @@ def string_num(text):
             string_numbers += word_dict[string]
     return string_numbers
 
+st.sidebar.markdown('''This project aims to forecast the popularity of a repository considering the number of "**Forks**," "**Watchers**," "**Issues**," "**Tags**," "**Description of Repo**," "**Contributors**," "**License**," and "Languages Used in Project." The data was gathered with the use of **BeautifulSoap**, the GitHub API, and Kaggle GitHub datasets. Machine learning regression was then used to estimate the popularity of the repos.''')
+
 
 keys=['forks','watchers','open_issues_count','topics','description','language']
 form = st.form(key='my_form')
@@ -155,6 +157,11 @@ if submit_button:
         if pred>1000:
             pred=str(float(pred)/1000)+'k'
         st.success("Your Repo can achieve Popularity  : "+str(pred)+' 🌟')
+
+        if pred>35:
+            st.success("This Repo is popular and consumable.")
+        else:
+            st.error("We recommed that this Repo is not consumable. Use it at your own risk!!")
     
     except:
         st.error("Sorry cannot find the repo, please Try again!!!")
